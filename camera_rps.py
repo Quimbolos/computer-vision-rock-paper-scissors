@@ -18,19 +18,34 @@ def get_prediction():
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
     while True:
-        ret, frame = cap.read()
-        resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
-        image_np = np.array(resized_frame)
-        normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # Normalize the image
-        data[0] = normalized_image
-        labels = ["Rock","Paper","Scissors","Nothing"]
-        prediction = model.predict(data)
-        prediction2 = labels[np.argmax(prediction)]
-        user_choice = prediction2
-        # cv2.imshow('frame', frame)
-        print(prediction2)
+        start = time.time()
+        time_limit = 3 # seconds
+
+        while time_limit > 0:
+            
+            ret, frame = cap.read()
+            resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
+            image_np = np.array(resized_frame)
+            normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # Normalize the image
+            data[0] = normalized_image
+            labels = ["Rock","Paper","Scissors","Nothing"]
+
+            current = time.time()
+
+            if current - start >= 1:
+                start = current
+                time_limit = time_limit - 1
+
+        elif time_limit == 0:
+
+            prediction = model.predict(data)
+            prediction2 = labels[np.argmax(prediction)]
+            user_choice = prediction2
+            cv2.imshow('frame', frame)
+            print(prediction2)
+
         # Press q to close the window
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        elif cv2.waitKey(1) & 0xFF == ord('q'):
             break
         
     return user_choice
