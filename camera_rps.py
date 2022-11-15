@@ -35,35 +35,61 @@ def get_prediction():
             if current - start >= 1:
                 start = current
                 time_limit = time_limit - 1
-
-        elif time_limit == 0:
-
+        
+        else:
             prediction = model.predict(data)
             prediction2 = labels[np.argmax(prediction)]
             user_choice = prediction2
             cv2.imshow('frame', frame)
             print(prediction2)
-
-        # Press q to close the window
-        elif cv2.waitKey(1) & 0xFF == ord('q'):
             break
         
     return user_choice
 
-def get_winner(user_choice = get_prediction(),computer_choice = get_computer_choice()):
+def get_winner(computer_choice = get_computer_choice()):
+    
+    computer_wins = 0
+    user_wins = 0
 
-    if user_choice == computer_choice:
-        print("It is a tie!")
+    while True:
 
-    else:
-        if user_choice == 'Rock' and computer_choice == 'Scissors':
-            print("You won!")
-        elif user_choice == 'Scissors' and computer_choice == 'Paper':
-            print("You won!")
-        elif user_choice == 'Paper' and computer_choice == 'Rock':
-            print("You won!")
+        user_choice = get_prediction()
+
+        if user_choice == "Nothing":
+            print("Try again!")
+
+        elif user_choice == computer_choice:
+            print("It is a tie!")
+
         else:
-            print("You lost")
+            if user_choice == 'Rock' and computer_choice == 'Scissors':
+                print("User won 1 point!")
+                user_wins = user_wins + 1
+                print("user wins are", user_wins)
+
+            elif user_choice == 'Scissors' and computer_choice == 'Paper':
+                print("User won 1 point!")
+                user_wins = user_wins + 1
+                print("user wins are", user_wins)
+
+            elif user_choice == 'Paper' and computer_choice == 'Rock':
+                print("User won 1 point!")
+                user_wins = user_wins + 1
+                print("user wins are", user_wins)
+
+            else:
+                print("Computer won 1 point!")
+                computer_wins = computer_wins + 1
+                print("Computer wins are", computer_wins)
+        
+        if user_wins == 3 or computer_wins == 3:
+            break
+
+    
+    if user_wins == 3:
+        print("You won!")
+    else: 
+        print("You lost!")
 
 
 get_winner()
