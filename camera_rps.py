@@ -4,6 +4,10 @@ from keras.models import load_model
 import numpy as np
 import random
 import time
+import warnings
+warnings.filterwarnings('ignore')
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 def get_computer_choice():
 
@@ -37,7 +41,7 @@ def get_prediction():
                 time_limit = time_limit - 1
         
         else:
-            prediction = model.predict(data)
+            prediction = model.predict(data, verbose = 0 )
             prediction2 = labels[np.argmax(prediction)]
             user_choice = prediction2
             cv2.imshow('frame', frame)
