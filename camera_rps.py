@@ -1,5 +1,7 @@
-# %% 
+# %%
+
 import cv2
+import tensorflow as tf
 from keras.models import load_model
 import numpy as np
 import random
@@ -8,6 +10,7 @@ import warnings
 warnings.filterwarnings('ignore')
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 def get_computer_choice():
 
@@ -97,7 +100,3 @@ def get_winner(computer_choice = get_computer_choice()):
 
 
 get_winner()
-
-# %%
-
-# %%
