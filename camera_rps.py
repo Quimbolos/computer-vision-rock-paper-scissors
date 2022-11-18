@@ -53,13 +53,14 @@ def get_prediction():
         
     return user_choice
 
-def get_winner(computer_choice = get_computer_choice()):
+def get_winner():
     
     computer_wins = 0
     user_wins = 0
 
     while True:
 
+        computer_choice = get_computer_choice()
         user_choice = get_prediction()
 
         if user_choice == "Nothing":
@@ -68,26 +69,25 @@ def get_winner(computer_choice = get_computer_choice()):
         elif user_choice == computer_choice:
             print("It is a tie!")
 
+        elif user_choice == 'Rock' and computer_choice == 'Scissors':
+            print("User won 1 point!")
+            user_wins = user_wins + 1
+            print("user wins are", user_wins)
+
+        elif user_choice == 'Scissors' and computer_choice == 'Paper':
+            print("User won 1 point!")
+            user_wins = user_wins + 1
+            print("user wins are", user_wins)
+
+        elif user_choice == 'Paper' and computer_choice == 'Rock':
+            print("User won 1 point!")
+            user_wins = user_wins + 1
+            print("user wins are", user_wins)
+
         else:
-            if user_choice == 'Rock' and computer_choice == 'Scissors':
-                print("User won 1 point!")
-                user_wins = user_wins + 1
-                print("user wins are", user_wins)
-
-            elif user_choice == 'Scissors' and computer_choice == 'Paper':
-                print("User won 1 point!")
-                user_wins = user_wins + 1
-                print("user wins are", user_wins)
-
-            elif user_choice == 'Paper' and computer_choice == 'Rock':
-                print("User won 1 point!")
-                user_wins = user_wins + 1
-                print("user wins are", user_wins)
-
-            else:
-                print("Computer won 1 point!")
-                computer_wins = computer_wins + 1
-                print("Computer wins are", computer_wins)
+            print("Computer won 1 point!")
+            computer_wins = computer_wins + 1
+            print("Computer wins are", computer_wins)
         
         if user_wins == 3 or computer_wins == 3:
             break
@@ -96,7 +96,8 @@ def get_winner(computer_choice = get_computer_choice()):
     if user_wins == 3:
         print("You won!")
     else: 
-        print("You lost!")
+        print("You lost")
 
 
 get_winner()
+# %%
