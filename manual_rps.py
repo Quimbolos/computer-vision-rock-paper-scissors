@@ -14,24 +14,24 @@ def get_user_choice():
 
     return user_choice
 
-def get_winner(user_choice = get_user_choice(),computer_choice = get_computer_choice()):
+def get_winner(user_choice,computer_choice):
 
     if user_choice == computer_choice:
         print("It is a tie!")
-
+    elif user_choice == 'Rock' and computer_choice == 'Scissors':
+        print("You won!")
+    elif user_choice == 'Scissors' and computer_choice == 'Paper':
+        print("You won!")
+    elif user_choice == 'Paper' and computer_choice == 'Rock':
+        print("You won!")
     else:
-        if user_choice == 'Rock' and computer_choice == 'Scissors':
-            print("You won!")
-        elif user_choice == 'Scissors' and computer_choice == 'Paper':
-            print("You won!")
-        elif user_choice == 'Paper' and computer_choice == 'Rock':
-            print("You won!")
-        else:
-            print("You lost")
+        print("You lost")
+
 
 def play():
-
-    return get_winner()
+    computer_choice = get_computer_choice()
+    user_choice = get_user_choice()
+    get_winner(computer_choice, user_choice)
 
 play()
 # %%
