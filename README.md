@@ -62,7 +62,8 @@ play()
 
 Create a Python script that simulates a Rock-Paper-Scissors game using computer vision. Initially, the hard-coded user guess is replaced with the output of the computer vision model. A new function called get_prediction is created, where the output from the model is converted into a "Rock" / "Paper" / "Scissors" output.
 Secondly, a countdown is added to the code using the time.time() function.
-Thirdly, another function is created to repeat the game until either the computer or the user wins. For each TASK, changes in the code are committed and pushed to the GitHub repo.
+Thirdly, another function is created to repeat the game until either the computer or the user wins. 
+Finally, for the last optional task, a class is created, where a constructor and three methods are included. The first method gets the computer's choice, the second method gets the user's choice (through the camera), and the last method determines a winner. In addition, the countdown is displayed on the camera. For each TASK, changes in the code are committed and pushed to the GitHub repo.
 
 
 ```python
