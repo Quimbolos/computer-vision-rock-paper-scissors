@@ -208,4 +208,6 @@ RockPaperScissor().get_winner()
 
 ```
 ## Pyhton Frame in OpenCV:
+
 ![ScreenShoot](Screenshot.png)
+
